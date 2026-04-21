@@ -15,6 +15,7 @@ try {
         return userModified
     })
 
+
     const path = ph.resolve('users.json')
     const dataJson = JSON.stringify(userModifieds, null, 4)
     await fsp.writeFile(path, dataJson)
@@ -30,10 +31,7 @@ try {
     const sv = http.createServer((request, response) => {
         if (request.method === 'GET') {
             if (request.url === '/users') {
-                response.
-
-
-
+                //MODIFICAR
                 response.statusCode = 200
                 return response.end('users.json')
             }
