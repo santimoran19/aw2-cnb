@@ -25,15 +25,18 @@ const sv = http.createServer((request, response) => {
     try {
 
         if (request.method === 'GET' && request.url === '/users') {
+
             await dataGetter()
             await writer()
-            await reader()
+            const content = await reader()
             response.statusCode = 200
-            return response.end('users.json')
+            return response.end(contenido)
 
         }
+
         response.statusCode = 400
         response.end('Route not found')
+
     }
 
     catch (error) {
