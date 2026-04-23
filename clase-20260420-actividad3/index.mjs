@@ -1,10 +1,11 @@
 import fsp from 'node:fs/promises'
 import ph from 'node:path'
 import http from 'node:http'
+import writer from './modules/wirter.mjs'
+import reader from './modules/reader.mjs'
+import dataGetter from './modules/dataGetter.mjs'
 
 try {
-    const response = await fetch('https://api.escuelajs.co/api/v1/users')
-    const users = await response.json()
 
     const usersModifieds = users.map((user) => {
         const userModified = {
@@ -15,31 +16,28 @@ try {
         return userModified
     })
 
-
-    const path = ph.resolve('users.json')
-    const dataJson = JSON.stringify(userModifieds, null, 4)
-    await fsp.writeFile(path, dataJson)
-
-    const localUsers = await fsp.readFile(path, 'utf8')
-    console.log(localUsers)
-
 } catch (error) {
     console.log(`Error: ${error.message}`)
 }
 
-try {
-    const sv = http.createServer((request, response) => {
-        if (request.method === 'GET') {
-            if (request.url === '/users') {
-                //MODIFICAR
-                response.statusCode = 200
-                return response.end('users.json')
-            }
+const sv = http.createServer((request, response) => {
+
+    try {
+
+        if (request.method === 'GET' && request.url === '/users') {
+            await dataGetter()
+            await writer()
+            await reader()
+            response.statusCode = 200
+            return response.end('users.json')
+
         }
         response.statusCode = 400
-        response.end('Resource not found')
-    })
+        response.end('Route not found')
+    }
 
-} catch (error) {
-    console.log(`Error: ${error.message}`)
-}
+    catch (error) {
+        console.log(`Error: ${error.message}`)
+    }
+
+})
