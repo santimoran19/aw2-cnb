@@ -1,16 +1,16 @@
 import fsp from 'node:fs/promises'
 import ph from 'node:path'
 
-const writer = async() => {
+const writer = async(data) => {
 
     try {
 
         const path = ph.resolve('users.json')
-        const dataJson = JSON.stringify(userModifieds, null, 4)
+        const dataJson = JSON.stringify(data, null, 4)
         await fsp.writeFile(path, dataJson)
 
     } catch (error) {
-        comsole.log(`Writing error: ${error.message}`)
+        console.log(`Writing error: ${error.message}`)
     }
 }
 

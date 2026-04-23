@@ -1,0 +1,52 @@
+[
+    {
+        "id": 1,
+        "email": "john@mail.com",
+        "name": "Jhon"
+    },
+    {
+        "id": 2,
+        "email": "maria@mail.com",
+        "name": "Maria"
+    },
+    {
+        "id": 3,
+        "email": "admin@mail.com",
+        "name": "Admin"
+    },
+    {
+        "id": 4,
+        "email": "Lucas_Hamill67@yahoo.com",
+        "name": "Brody_Nitzsche"
+    },
+    {
+        "id": 5,
+        "email": "beko@gmail.com",
+        "name": "beko"
+    },
+    {
+        "id": 6,
+        "email": "karem@gmail.com",
+        "name": "Karem"
+    },
+    {
+        "id": 7,
+        "email": "karem@gmail.com",
+        "name": "Karem"
+    },
+    {
+        "id": 8,
+        "email": "karem@gmail.com",
+        "name": "John Doe"
+    },
+    {
+        "id": 9,
+        "email": "kare1m@gmail.com",
+        "name": "John Doe"
+    },
+    {
+        "id": 10,
+        "email": "c@g.com",
+        "name": "Carlos"
+    }
+]
