@@ -24,6 +24,25 @@ const sv = http.createServer(async (request, response) => {
 
             response.statusCode = 200
             return response.end(content)
+        }
+
+        else if (request.method === 'GET' && request.url === '/users/filters') {
+
+            const users = await dataGetter()
+
+            const filteredUsers = users
+                .filter(user => user.id < 10)
+                .map(user => ({
+                    id: user.id,
+                    email: user.email,
+                    name: user.name,
+                }))
+
+            await writer(filteredUsers)
+            const content = await reader()
+
+            response.statusCode = 200
+            return response.end(content)
 
         }
 
@@ -31,7 +50,6 @@ const sv = http.createServer(async (request, response) => {
         response.end('Resource not found')
 
     }
-
     catch (error) {
         console.log(`Error: ${error.message}`)
     }
